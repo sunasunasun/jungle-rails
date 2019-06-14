@@ -13,24 +13,25 @@
 
     <div>
       <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th colspan="2">Product</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Total</th>
-            <th>Qty</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @line_items %>
-        </tbody>
-      </table>
-      <table class="table table-bordered table-info">
-        <th class="text-center table-info">Grand Total: $<%= '%.2f' % (@order.total_cents.to_f / 100) %></th>
-      </table>
-    </div>
-
+          <thead>
+            <tr>
+              <th colspan="2">Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <% @order.line_items.each do |item| %>
+          <tbody>
+            <%= render item %>
+          </tbody>
+          <% end  %>
+        </table>
+        <table class="table table-bordered table-info">
+          <th class="text-center table-info">Grand Total: $<%= '%.2f' % (@order.total_cents.to_f / 100) %></th>
+        </table>
+      </div>
     <p>Thanks for joining and have a great day!</p>
   </body>
 </html>
